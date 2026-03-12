@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<div class="recipe-container">
+
+<h1><%= recipe[0].title %></h1>
+
+<p><strong>Protein:</strong> <%= recipe[0].protein_type %></p>
+
+<h3>Ingredients:</h3>
+<ul>
+  <% recipe.forEach(item => { %>
+    <li class="ingredient" title="<%= item.description %>">
+      <%= item.name %>
+    </li>
+  <% }) %>
+</ul>
+
+<h3>Instructions:</h3>
+<p><%= recipe[0].instructions %></p>
+
+</div>
+
+<%- include('../partials/footer') %>

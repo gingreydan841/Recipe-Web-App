@@ -1,0 +1,17 @@
+<%- include ('../partials/header') %>
+
+<h1>Browse Recipes</h1>
+
+<input type="text" id="searchInput" placeholder="Search recipes...">
+
+<ul class="recipe-list">
+    <% recipes.forEach(recipe => { %>
+        <li>
+            <a href="/recipes/<%= recipe.id %>">
+                <%= recipe.title %> (<%= recipe.protein_type %>)
+            </a>
+        </li>
+    <% }) %>
+</ul>
+
+<%- include('../partials/footer') %>

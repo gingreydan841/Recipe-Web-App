@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+
+<div class="form-container">
+
+<h1>Add a New Recipe</h1>
+
+<form action="/addRecipe" method="POST">
+
+<div class="form-row">
+<label>Recipe Title:</label>
+<input type="text" name="title" required>
+</div>
+
+<div class="form-row">
+<label>Protein Type:</label>
+<input type="text" name="protein_type" required>
+</div>
+
+<div class="form-row">
+<label>Ingredients:</label>
+<input type="text" name="ingredients" placeholder="Chicken, Broccoli, Rice, etc." required>
+</div>
+
+<div class="form-row">
+<label>Instructions:</label>
+<textarea name="instructions" rows="5" required></textarea>
+</div>
+
+<button type="submit">Add Recipe</button>
+
+</form>
+
+</div>
+
+<%- include('../partials/footer') %>
