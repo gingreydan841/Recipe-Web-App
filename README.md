@@ -23,8 +23,8 @@ How to Run:
 2. Install dependencies
    npm install
 
-3. Start the server
+4. Start the server
    node server.js
 
-4. Open browser
+5. Open browser
    http://localhost:3000
