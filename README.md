@@ -17,14 +17,14 @@ Tools used:
 
 How to Run:
 
-1. Import the database
-   SOURCE cookbook.sql;
+1. Import the database:
+SOURCE cookbook.sql;
 
-2. Install dependencies
-   npm install
+2. Install dependencies:
+npm install
 
-3. Start the server
-   node server.js
+4. Start the server:
+node server.js
 
-4. Open browser
+5. Open browser at:
    http://localhost:3000
