@@ -47,8 +47,8 @@ app.get("/recipes/:id", (req, res) => {
   const sql = `
     SELECT r.*, i.name, i.description
     FROM recipes r
-    JOIN recipe_ingredients ri ON r.id = ri.recipe_id
-    JOIN ingredients i ON i.id = ri.ingredient_id
+    LEFT JOIN recipe_ingredients ri ON r.id = ri.recipe_id
+    LEFT JOIN ingredients i ON i.id = ri.ingredient_id
     WHERE r.id = ?
   `;
 
@@ -88,45 +88,43 @@ app.post("/addRecipe", (req, res) => {
     ingredientList.forEach((ingredient) => {
       const ingredientName = ingredient.trim();
 
-      // Check if ingredient already exists
-      const checkSQL = "SELECT id FROM ingredients WHERE name = ?";
+      // Insert ingredient only if it doesn't already exist
+      const insertIngredientSQL = `
+        INSERT IGNORE INTO ingredients (name)
+        VALUES (?)
+      `;
 
-      db.query(checkSQL, [ingredientName], (err, results) => {
+      db.query(insertIngredientSQL, [ingredientName], (err) => {
         if (err) {
           console.error(err);
           return;
         }
 
-        if (results.length > 0) {
-          // Ingredient already exists
+        // Get the ingredient ID
+        const getIngredientSQL = `
+          SELECT id FROM ingredients WHERE name = ?
+        `;
+
+        db.query(getIngredientSQL, [ingredientName], (err, results) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+
           const ingredientId = results[0].id;
 
+          // Link recipe and ingredient
           const linkSQL = `
             INSERT INTO recipe_ingredients (recipe_id, ingredient_id)
             VALUES (?, ?)
           `;
 
-          db.query(linkSQL, [recipeId, ingredientId]);
-        } else {
-          // Ingredient does not exist then insert it
-          const insertSQL = "INSERT INTO ingredients (name) VALUES (?)";
-
-          db.query(insertSQL, [ingredientName], (err, result2) => {
+          db.query(linkSQL, [recipeId, ingredientId], (err) => {
             if (err) {
               console.error(err);
-              return;
             }
-
-            const ingredientId = result2.insertId;
-
-            const linkSQL = `
-              INSERT INTO recipe_ingredients (recipe_id, ingredient_id)
-              VALUES (?, ?)
-            `;
-
-            db.query(linkSQL, [recipeId, ingredientId]);
           });
-        }
+        });
       });
     });
 
