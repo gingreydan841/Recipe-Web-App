@@ -6,6 +6,8 @@
 
 <p><strong>Protein:</strong> <%= recipe[0].protein_type %></p>
 
+<img src="<%= recipe[0].image %>" class="recipe-image">
+
 <h3>Ingredients:</h3>
 <ul>
   <% recipe.forEach(item => { %>

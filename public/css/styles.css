@@ -106,6 +106,28 @@ p {
 
 /* ===== RECIPE PAGE LAYOUT ===== */
 
+.recipe-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.instructions-section {
+  flex: 2;
+  text-align: left;
+}
+
+/* Recipe image styling */
+.recipe-image {
+  float: right;
+  width: 300px;
+  margin-left: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
 .recipe-container {
   max-width: 800px;
   margin: auto;
@@ -115,6 +137,7 @@ p {
 .recipe-instructions {
   text-align: left;
 }
+
 
 /* ===== RECIPE LIST PAGE ===== */
 
