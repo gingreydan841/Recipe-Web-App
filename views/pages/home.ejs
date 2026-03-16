@@ -1,5 +1,32 @@
-<%- include ('../partials/header') %>
+<%- include('../partials/header') %>
 
-<p>This website includes recipes of my favorite foods.</p>
+<div class="home-container">
+
+<h2>Featured Recipes</h2>
+
+<div class="featured-recipes">
+
+<% featuredRecipes.forEach(recipe => { %>
+
+<div class="recipe-card">
+<h3>
+<a href="/recipes/<%= recipe.id %>">
+<%= recipe.title %>
+</a>
+</h3>
+
+<p>Protein: <%= recipe.protein_type %></p>
+
+</div>
+
+<% }) %>
+
+</div>
+
+<p class="recipe-count">
+Currently featuring <strong><%= totalRecipes %></strong> recipes!
+</p>
+
+</div>
 
 <%- include('../partials/footer') %>

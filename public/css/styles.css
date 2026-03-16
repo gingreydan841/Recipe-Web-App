@@ -58,16 +58,6 @@ h1 {
   background-color: #2f5d9a;
 }
 
-/* Orange highlighted button */
-
-.highlight {
-  background-color: #ff8c1a;
-}
-
-.highlight:hover {
-  background-color: #e67600;
-}
-
 /* ===== HOME PAGE TEXT ===== */
 
 p {
@@ -76,12 +66,54 @@ p {
   color: #454545;
 }
 
+/* HOME PAGE Featured Recipes */
+.home-container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.featured-recipes {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.recipe-card {
+  background: white;
+  padding: 20px;
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.recipe-card a {
+  text-decoration: none;
+  color: #1e3a8a;
+}
+
+.recipe-card a:hover {
+  text-decoration: underline;
+}
+
+.recipe-count {
+  margin-top: 35px;
+  font-size: 18px;
+}
+
 /* ===== RECIPE PAGE LAYOUT ===== */
 
 .recipe-container {
   max-width: 800px;
   margin: auto;
   padding-left: 40px;
+}
+
+.recipe-instructions {
+  text-align: left;
 }
 
 /* ===== RECIPE LIST PAGE ===== */

@@ -18,7 +18,27 @@ app.set("views", path.join(__dirname, "views"));
 
 // Home Page
 app.get("/", (req, res) => {
-  res.render("pages/home");
+  const countSQL = "SELECT COUNT(*) AS total FROM recipes";
+  const featuredSQL = "SELECT * FROM recipes ORDER BY id DESC LIMIT 3";
+
+  db.query(countSQL, (err, countResult) => {
+    if (err) {
+      console.error(err);
+      return res.send("Database error");
+    }
+
+    db.query(featuredSQL, (err, featuredResult) => {
+      if (err) {
+        console.error(err);
+        return res.send("Database error");
+      }
+
+      res.render("pages/home", {
+        totalRecipes: countResult[0].total,
+        featuredRecipes: featuredResult,
+      });
+    });
+  });
 });
 
 // View All Recipes
