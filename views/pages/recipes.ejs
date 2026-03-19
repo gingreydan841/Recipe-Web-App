@@ -7,6 +7,7 @@
 <ul class="recipe-list">
     <% recipes.forEach(recipe => { %>
         <li>
+            <img src="<%= recipe.image %>" class="card-image">
             <a href="/recipes/<%= recipe.id %>">
                 <%= recipe.title %> (<%= recipe.protein_type %>)
             </a>
